@@ -23,6 +23,10 @@ export default function Home() {
         body: formData,
       });
 
+      // Log the raw response text
+      const rawResponse = await response.text();
+      console.log('Raw response:', rawResponse);
+
       if (!response) {
         throw new Error('Failed to upload document');
       }
@@ -40,7 +44,7 @@ export default function Home() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { 'application/pdf': ['.pdf'] },
-    maxSize: 10 * 1024 * 1024,
+    maxSize: 10 * 1024 * 1024, // 10mb
   });
 
   return (

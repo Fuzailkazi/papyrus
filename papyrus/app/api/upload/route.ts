@@ -18,13 +18,13 @@ export async function POST(req: Request) {
       return new Response('No file provided', { status: 400 });
     }
 
-    // generate a doc id
+    //Generate a document id
     const documentId = crypto.randomUUID();
 
     //convert file to blob
     const blob = new Blob([await file.arrayBuffer()], { type: file.type });
 
-    //load and parse pdf
+    // Load and parse PDF
     const loader = new PDFLoader(blob);
     const docs = await loader.load();
 
